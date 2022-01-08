@@ -18,8 +18,8 @@ A News app built in kotlin with implementation of MVVM architecture and android 
     <th>News Sharing</th>
   </tr>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/79650580/148539930-422557a4-0519-4720-92e3-beeb176cff78.jpg" alt="News Display" style="width:250px;height:500px;"></td>
-    <td><img src="https://user-images.githubusercontent.com/79650580/148539828-e0312d22-b431-4115-9403-b316ac227ea4.jpg" alt="Saved News" style="width:250px;height:500px;"></td>
+    <td><img src="https://user-images.githubusercontent.com/79650580/148635903-616783b2-7a1d-4630-8dba-c2d4464ab322.jpg" alt="News Display" style="width:250px;height:500px;"></td>
+    <td><img src="https://user-images.githubusercontent.com/79650580/148636163-39cc92db-8472-4129-b720-a247f40dc998.jpg" alt="Saved News" style="width:250px;height:500px;"></td>
     <td><img src="https://user-images.githubusercontent.com/79650580/148540369-f782a187-b760-42c8-9eb0-8cd461ae7e27.jpg" alt="Image - news sharing" style="width:250px;height:500px;"></td>
   </tr>
    
