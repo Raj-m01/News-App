@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/share_btn"
         android:text="Headline"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -30,6 +31,8 @@
         android:id="@+id/news_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:maxHeight="250dp"
         android:layout_below="@+id/headline"
         android:layout_marginVertical="10dp"
         android:src="@mipmap/ic_launcher" />

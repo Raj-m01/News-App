@@ -1,6 +1,7 @@
 package com.example.newsapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,23 +31,23 @@ class SavedNewsFragment : Fragment() {
         recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         newData = mutableListOf()
 
-
         val adapter = CustomAdapter(newData, object : CustomAdapter.SaveClickListener{
             override fun onSaveBtnClick(position: Int) {
-
+                context?.let { viewModel.deleteNews(it,newData.get(position)) }
             }
         })
+
+
 
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         context?.let {
             viewModel.getNewsFromDB(it.applicationContext)?.observe(viewLifecycleOwner, Observer {
-                    newData.addAll(it)
+                newData.clear()
+                newData.addAll(it)
                 adapter.notifyDataSetChanged()
             })
         }
-
-
 
         recyclerView.adapter = adapter
 

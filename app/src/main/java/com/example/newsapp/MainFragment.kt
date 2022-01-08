@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -21,6 +22,7 @@ class MainFragment : Fragment() {
 
     lateinit var viewModel: NewsViewModel
     lateinit var recyclerView: RecyclerView
+    lateinit var progressBar: ProgressBar
     lateinit var fetchedNews: MutableList<NewsModel>
     lateinit var mAdapter: CustomAdapter
 
@@ -32,12 +34,15 @@ class MainFragment : Fragment() {
         val view: View =  inflater.inflate(R.layout.fragment_main, container, false)
 
 
+        progressBar = view.findViewById(R.id.progressbar)
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         fetchedNews = mutableListOf<NewsModel>()
 
+
+        progressBar.visibility = View.VISIBLE
 
 
         view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener(View.OnClickListener {
@@ -56,7 +61,7 @@ class MainFragment : Fragment() {
 
                 context?.let { viewModel.insertNews(it,fetchedNews.get(position)) }
 
-                Toast.makeText(context,"Saved", Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Saved", Toast.LENGTH_SHORT).show()
 
             }
         })
@@ -68,16 +73,13 @@ class MainFragment : Fragment() {
                 // do something
                 fetchedNews.addAll(news)
                 recyclerView.adapter = mAdapter
+                progressBar.visibility = View.GONE
                 mAdapter.notifyDataSetChanged()
             }
 
             onChanged(it)
 
         })
-
-
-
-
 
     return view
     }

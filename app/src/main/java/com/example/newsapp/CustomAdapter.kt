@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
@@ -15,15 +17,20 @@ import com.squareup.picasso.Picasso
 class CustomAdapter(private val newsList: MutableList<NewsModel>, val saveListener: SaveClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
     lateinit var  context: Context
+    private lateinit var navController: NavController
 
     companion object{
         var myClickListener: SaveClickListener? = null
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         context = parent.context
+
+        navController =  parent.findNavController()
+
         return ViewHolder(view)
     }
 
@@ -34,13 +41,26 @@ class CustomAdapter(private val newsList: MutableList<NewsModel>, val saveListen
         cont.startActivity(intent)
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val newsData = newsList[holder.adapterPosition]
 
         holder.headLine.text = newsData.headLine
         holder.description.text = newsData.description
-        Picasso.get().load(newsData.image).into(holder.image)
+
+        if(!newsData.image.isNullOrEmpty()) {
+            Picasso.get().load(newsData.image).fit().centerCrop().into(holder.image)
+        }else{
+            holder.image.visibility = View.GONE
+        }
+
+
+        if(navController.currentDestination.toString().contains("savedNewsFragment4")){
+            holder.saveBtn.setImageResource(R.drawable.ic_baseline_delete_outline_24)
+
+        }
 
 
         holder.image.setOnClickListener( View.OnClickListener {
@@ -80,13 +100,14 @@ class CustomAdapter(private val newsList: MutableList<NewsModel>, val saveListen
         return newsList.size
     }
 
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
+    class ViewHolder(ItemView: View?) : RecyclerView.ViewHolder(ItemView!!){
 
         val saveBtn: ImageView = itemView.findViewById(R.id.save_news)
         val shareBtn: ImageView = itemView.findViewById(R.id.share_btn)
         val image: ImageView = itemView.findViewById(R.id.news_image)
         val headLine: TextView = itemView.findViewById(R.id.headline)
         val description: TextView = itemView.findViewById(R.id.description)
+
     }
 
     open interface SaveClickListener {
