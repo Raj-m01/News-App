@@ -3,16 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1765625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/button_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_bookmarks_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_business_24.xml" value="0.24259259259259258" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.24259259259259258" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.1765625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_keyboard_arrow_down_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1765625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_open_in_browser_24.xml" value="0.1765625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_open_in_new_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.13796296296296295" />
-        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_saved_news.xml" value="0.25" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_main.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_saved_news.xml" value="0.1" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/list_item.xml" value="0.2" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/shimmer_list_item.xml" value="0.2" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/menu_item.xml" value="0.25" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26614583333333336" />
       </map>
