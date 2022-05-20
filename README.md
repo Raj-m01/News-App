@@ -19,13 +19,12 @@ Android news app built using Kotlin and implemented **MVVM** architecture. It re
     <th>Share news</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/App_home.gif" alt="News home" style="width:250px;height:500px;"></td>
+    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/App_home.gif" alt="News home" width=250px height=500px></td>
     <td><img src="https://user-images.githubusercontent.com/79650580/148636163-39cc92db-8472-4129-b720-a247f40dc998.jpg" alt="Saved News" style="width:250px;height:500px;"></td>
     <td><img src="https://user-images.githubusercontent.com/79650580/148540369-f782a187-b760-42c8-9eb0-8cd461ae7e27.jpg" alt="Image - news sharing" style="width:250px;height:500px;"></td>
   </tr>
    
 </table><br><br>
-
 
 
 ### MVVM Architecture : 
