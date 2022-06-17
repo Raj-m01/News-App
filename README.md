@@ -1,30 +1,32 @@
-# News-App
+# News-App 📰
 
 ### Overview :
 Android news app built using Kotlin and implemented **MVVM** architecture. It requests news from <a href="https://newsapi.org/">News api</a> with help of  **Retrofit** library.
 
 ### Features :
-* News details
-* Share news
-* Select news from different categories
-* Save news
-* Browse news page in detail
+* Display News in various categories 
+* Share news with friends
+* Browse news
+* Bookmark news to read later/ Delete news
+* Listen news with provided Text-To-Speech service
 
- ### Demo : 
+ ### Screenshots : 
  
  <table align="center">
   <tr>
-    <th>Home</th>
-    <th>Saved News</th>
-    <th>Share news</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/App_home.gif" alt="News home" width=250px height=500px></td>
-    <td><img src="https://user-images.githubusercontent.com/79650580/148636163-39cc92db-8472-4129-b720-a247f40dc998.jpg" alt="Saved News" style="width:250px;height:500px;"></td>
-    <td><img src="https://user-images.githubusercontent.com/79650580/148540369-f782a187-b760-42c8-9eb0-8cd461ae7e27.jpg" alt="Image - news sharing" style="width:250px;height:500px;"></td>
+    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/mainactivity.jpeg" alt="News home" width=250px height=500px></td>
+    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/read%20news%20activity.jpeg" alt="Saved News" style="width:250px;height:500px;"></td>
+    <td><img src="https://github.com/Raj-m01/News-App/blob/master/screenshots/saved%20news%20activity.jpeg" alt="Image - news sharing" style="width:250px;height:500px;"></td>
   </tr>
    
 </table><br><br>
+
+### Getting Started :
+
+ * Generate API key from <a href="https://newsapi.org/">News api</a>
+ *  Paste the key in gradle.properties
+ ````API_KEY="<YOUR_API_KEY>" ````
+ * Rebuild app
 
 
 ### MVVM Architecture : 
@@ -58,4 +60,10 @@ MVVM is one of the architectural patterns which enhances separation of concerns,
 ### Retrofit : 
 <a href="https://square.github.io/retrofit/"><b>Retrofit</b></a> is a type-safe REST client for Android, Java and Kotlin developed by Square. The library provides a powerful framework for authenticating and interacting with APIs and sending network requests with OkHttp.
 
-### Application link : <a href="https://drive.google.com/file/d/1u0A4mCkY98cfavE32c6GH_bVp0v9wujr/view?usp=sharing">**Click here to download**</a>
+### Application link : <a href="https://github.com/Raj-m01/News-App/blob/master/apk/News.apk">**Click here to download apk**</a>
+
+### 📝 License 
+
+Copyright (c) 2022 Raj Manjrekar
+
+This project is [MIT](https://github.com/Raj-m01/News-App/blob/master/License) licensed.
