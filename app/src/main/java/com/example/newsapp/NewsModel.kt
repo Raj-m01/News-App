@@ -20,4 +20,13 @@ data class NewsModel(
     @ColumnInfo(name = "url")
     val url: String?,
 
-    )
+    @ColumnInfo(name = "source")
+    val source: String?,
+
+    @ColumnInfo(name = "time")
+    val time: String?,
+
+    @ColumnInfo(name = "content")
+    val content: String?
+
+)

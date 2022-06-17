@@ -1,203 +1,185 @@
 package com.example.newsapp
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.TranslateAnimation
-import android.widget.*
-import androidx.annotation.Nullable
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.example.newsapp.adapters.FragmentAdapter
 import com.example.newsapp.architecture.NewsViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
-
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+//import com.example.newsapp.BuildConfig
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: NewsViewModel
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var newsContainer: FrameLayout
-    private lateinit var fetchedNews: MutableList<NewsModel>
-    private lateinit var mAdapter: CustomAdapter
-    private lateinit var shimmerLayout: ShimmerFrameLayout
-    private lateinit var categoryContainer: LinearLayout
-    private lateinit var dropBtn: ImageButton
+    companion object {
 
-    private var hideCategory: Boolean = false
+        var APIRequestError = false
+        var errorMessage = "error"
+        const val API_KEY = BuildConfig.API_KEY
+        const val TOTAL_NEWS_TAB = 7
+        const val TOP_HEADLINES_COUNT = 5
+        const val GENERAL = "general"
+        const val SCIENCE = "science"
+        const val HEALTH = "health"
+        const val ENTERTAINMENT = "entertainment"
+        const val BUSINESS = "business"
+        const val TECHNOLOGY = "technology"
+        const val SPORTS = "sports"
+        const val NEWS_URL = "news url"
+        const val NEWS_TITLE = "news title"
+        const val NEWS_IMAGE_URL = "news image url"
+        const val NEWS_SOURCE = "news source"
+        const val NEWS_PUBLICATION_TIME = "news publication time"
+        const val NEWS_DESCRIPTION = "news description"
+        const val NEWS_CONTENT = "news content"
+        var generalNews: ArrayList<NewsModel> = ArrayList()
+        var entertainmentNews: MutableList<NewsModel> = mutableListOf()
+        var businessNews: MutableList<NewsModel> = mutableListOf()
+        var healthNews: MutableList<NewsModel> = mutableListOf()
+        var scienceNews: MutableList<NewsModel> = mutableListOf()
+        var sportsNews: MutableList<NewsModel> = mutableListOf()
+        var techNews: MutableList<NewsModel> = mutableListOf()
+
+    }
+
+//    Tabs Title
+    private val newsCategories = arrayOf(
+        "Home",
+        BUSINESS,
+        ENTERTAINMENT,
+        SCIENCE,
+        SPORTS,
+        TECHNOLOGY,
+        HEALTH
+    )
+
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager2
+    private lateinit var fragmentAdapter: FragmentAdapter
+    private lateinit var shimmerLayout: ShimmerFrameLayout
+    private var totalRequestCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        categoryContainer = findViewById(R.id.cate_container)
-        dropBtn = findViewById(R.id.drop_btn)
-        newsContainer = findViewById(R.id.news_container)
-        recyclerView = findViewById(R.id.recyclerView)
-        shimmerLayout = findViewById(R.id.shimmerLayout)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+
+        //set actionbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        tabLayout = findViewById(R.id.tab_layout)
+        viewPager = findViewById(R.id.view_pager)
+        shimmerLayout = findViewById(R.id.shimmer_layout)
         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
-        fetchedNews = mutableListOf<NewsModel>()
-
-        findViewById<Button>(R.id.general_btn).setBackgroundColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.general_btn).setTextColor(resources.getColor(R.color.white))
 
 
-        changeNews("general")
-
-        dropBtn.setOnClickListener{
-
-            if(!hideCategory) {
-
-                hideCategory = true
-                val h = categoryContainer.height
-                slideUp(categoryContainer, h)
-                dropBtn.animate().rotationBy(180f)
-
-            }else{
-
-                hideCategory = false
-                val h = it.height
-                slideDown(categoryContainer, h)
-                dropBtn.animate().rotationBy(180f)
-            }
-
+        if(!isNetworkAvailable(applicationContext)){
+            shimmerLayout.visibility = View.GONE
+            val showError: TextView = findViewById(R.id.display_error)
+            showError.text = getString(R.string.internet_warming)
+            showError.visibility = View.VISIBLE
         }
 
-        mAdapter = CustomAdapter(fetchedNews, object : CustomAdapter.SaveClickListener{
-            override fun onSaveBtnClick(position: Int) {
+        // send request call for news data
+        requestNews(GENERAL, generalNews)
+        requestNews(BUSINESS, businessNews)
+        requestNews(ENTERTAINMENT, entertainmentNews)
+        requestNews(HEALTH, healthNews)
+        requestNews(SCIENCE, scienceNews)
+        requestNews(SPORTS, sportsNews)
+        requestNews(TECHNOLOGY, techNews)
 
-                this.let { viewModel.insertNews(this@MainActivity, fetchedNews[position]) }
-
-                Toast.makeText(this@MainActivity,"Saved", Toast.LENGTH_SHORT).show()
-
-            }
-        })
-
-    }
-
-
-    private fun slideUp(view: View, height: Int) {
-
-        val duration = 200
-
-        val animate = TranslateAnimation(0f, 0f, 0f, -height.toFloat())
-        animate.duration = duration.toLong()
-        view.animate().alpha(0.0f)
-        view.startAnimation(animate)
-        view.visibility = View.GONE
-
+        fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter = fragmentAdapter
+        viewPager.visibility = View.GONE
 
     }
 
-    private fun slideDown(view: View, height: Int) {
 
-        val duration = 200
+    private fun requestNews(newsCategory: String, newsData: MutableList<NewsModel>) {
 
-        val animate = TranslateAnimation(0f, 0f, -height.toFloat(),0f )
-        animate.duration = duration.toLong()
-        view.animate().alpha(1.0f)
-        view.startAnimation(animate)
-        view.visibility = View.VISIBLE
+        viewModel.getNews(category = newsCategory)?.observe(this) {
 
+            newsData.addAll(it)
+            totalRequestCount += 1
 
-    }
-
-    fun buttonOnClick(view:View)
-    {
-
-        // change button style
-        findViewById<Button>(R.id.general_btn).setBackgroundColor(resources.getColor(R.color.white))
-        findViewById<Button>(R.id.business_btn).setBackgroundColor(resources.getColor(R.color.white))
-        findViewById<Button>(R.id.entertainment_btn).setBackgroundColor(resources.getColor(R.color.white))
-        findViewById<Button>(R.id.health_btn).setBackgroundColor(resources.getColor(R.color.white))
-        findViewById<Button>(R.id.science_btn).setBackgroundColor(resources.getColor(R.color.white))
-        findViewById<Button>(R.id.sport_btn).setBackgroundColor(resources.getColor(R.color.white))
-
-        findViewById<Button>(R.id.general_btn).setTextColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.business_btn).setTextColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.entertainment_btn).setTextColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.health_btn).setTextColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.science_btn).setTextColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(R.id.sport_btn).setTextColor(resources.getColor(R.color.purple_500))
-
-
-        view.setBackgroundColor(resources.getColor(R.color.purple_500))
-        findViewById<Button>(view.id).setTextColor(resources.getColor(R.color.white))
-
-
-        when(view.id)
-        {
-
-            R.id.general_btn ->{
-                changeNews("general")
-            }
-
-            R.id.business_btn ->{
-                changeNews("business")
-            }
-
-            R.id.health_btn ->{
-                changeNews("health")
-            }
-
-            R.id.entertainment_btn ->{
-                changeNews("entertainment")
-            }
-
-            R.id.science_btn ->{
-                changeNews("science")
-            }
-
-            R.id.sport_btn ->{
-                changeNews("sport")
-            }
-
-
-
-        }
-    }
-
-    private fun changeNews(cate : String){
-
-        shimmerLayout.startShimmer()
-
-        viewModel.getNews(category = cate)?.observe(this, {
-
-            fun onChanged(@Nullable news: List<NewsModel>) {
-
-                fetchedNews.clear()
-                fetchedNews.addAll(news)
-                recyclerView.adapter = mAdapter
+            // If main fragment loaded then attach the fragment to viewPager
+            if (newsCategory == "general") {
                 shimmerLayout.stopShimmer()
+                shimmerLayout.hideShimmer()
                 shimmerLayout.visibility = View.GONE
-                mAdapter.notifyDataSetChanged()
+                setViewPager()
             }
 
-            onChanged(it)
+            if (totalRequestCount == TOTAL_NEWS_TAB) {
+                viewPager.offscreenPageLimit = 7
+            }
 
-        })
+        }
 
     }
 
-
+    private fun setViewPager() {
+        if (!APIRequestError) {
+            viewPager.visibility = View.VISIBLE
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = newsCategories[position]
+            }.attach()
+        } else {
+            val showError: TextView = findViewById(R.id.display_error)
+            showError.text = errorMessage
+            showError.visibility = View.VISIBLE
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_item, menu)
+
+        menuInflater.inflate(R.menu.menu_item_mainactivity, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        intent = Intent(applicationContext, SavedNews::class.java)
+        intent = Intent(applicationContext, SavedNewsActivity::class.java)
         startActivity(intent)
         return super.onOptionsItemSelected(item)
+    }
+
+    // Check internet connection
+    private fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        // For 29 api or above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork) ?: return false
+            return when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ->    true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ->   true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ->   true
+                else ->     false
+            }
+        }else {
+            // For below 29 api
+            if (connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo!!.isConnectedOrConnecting) {
+                return true
+            }
+        }
+        return false
     }
 
 }

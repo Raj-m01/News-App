@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.newsapp.NewsModel
 
-@Database(entities = arrayOf(NewsModel::class), version = 1,  exportSchema = false)
+@Database(entities = [NewsModel::class], version = 3, exportSchema = false)
 abstract class NewsDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
@@ -16,7 +16,7 @@ abstract class NewsDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: NewsDatabase? = null
 
-        fun getDataseClient(context: Context) : NewsDatabase {
+        fun getDataseClient(context: Context): NewsDatabase {
 
             if (INSTANCE != null) return INSTANCE!!
 

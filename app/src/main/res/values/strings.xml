@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">NewsApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="top_headlines">Top Headlines</string>
+    <string name="browse">Browse</string>
+    <string name="share">Share</string>
+    <string name="save">Read later</string>
+    <string name="listen">Listen</string>
+    <string name="internet_warming">Check your Internet Connection and Try Again!</string>
+    <string name="news_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+
 </resources>

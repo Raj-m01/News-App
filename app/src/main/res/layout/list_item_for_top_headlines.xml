@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card1"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp"
+    app:rippleColor="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/samplenews" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="4"
+            android:padding="5dp"
+            android:text="Hello , this is sample news....."
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+
+

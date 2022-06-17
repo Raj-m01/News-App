@@ -1,30 +1,30 @@
 package com.example.newsapp.architecture
 
-import com.example.newsapp.retrofit.NewsDataFromJson
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.newsapp.MainActivity
 import com.example.newsapp.NewsModel
 import com.example.newsapp.retrofit.NewsApi
+import com.example.newsapp.retrofit.NewsDataFromJson
 import com.example.newsapp.retrofit.RetrofitHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class NewsRepository {
 
-
-    val newsList = MutableLiveData<List<NewsModel>>()
-
     companion object {
 
-        var newsDatabase: NewsDatabase? = null
-        var newsList: LiveData<List<NewsModel>>? = null
+        private var newsDatabase: NewsDatabase? = null
 
-        fun initializeDB(context: Context) : NewsDatabase {
+        private fun initializeDB(context: Context): NewsDatabase {
             return NewsDatabase.getDataseClient(context)
         }
 
@@ -44,11 +44,10 @@ class NewsRepository {
             }
         }
 
-        fun getAllNews(context: Context) : LiveData<List<NewsModel>>? {
+        fun getAllNews(context: Context): LiveData<List<NewsModel>> {
 
             newsDatabase = initializeDB(context)
-            newsList = newsDatabase!!.newsDao().getNewsFromDatabase()
-            return newsList
+            return newsDatabase!!.newsDao().getNewsFromDatabase()
         }
 
     }
@@ -56,9 +55,10 @@ class NewsRepository {
     // get news from API
     fun getNewsApiCall(category: String?): MutableLiveData<List<NewsModel>> {
 
+        val newsList = MutableLiveData<List<NewsModel>>()
 
         val call = RetrofitHelper.getInstance().create(NewsApi::class.java)
-            .getNews("in", category, "5a3e054de1834138a2fbc4a75ee69053") //put your api key here
+            .getNews("in", category, MainActivity.API_KEY) //put your api key here
 
         call.enqueue(object : Callback<NewsDataFromJson> {
             override fun onResponse(
@@ -66,26 +66,58 @@ class NewsRepository {
                 response: Response<NewsDataFromJson>
             ) {
 
-                val body = response.body()
-                if (body != null) {
-                    val tempNewsList = mutableListOf<NewsModel>()
-                    body.articles.forEach {
+                if (response.isSuccessful) {
 
-                        tempNewsList.add(NewsModel(it.title, it.urlToImage, it.description,it.url))
+                    val body = response.body()
 
+                    if (body != null) {
+                        val tempNewsList = mutableListOf<NewsModel>()
+
+                        body.articles.forEach {
+                            tempNewsList.add(
+                                NewsModel(
+                                    it.title,
+                                    it.urlToImage,
+                                    it.description,
+                                    it.url,
+                                    it.source.name,
+                                    it.publishedAt,
+                                    it.content
+                                )
+                            )
+                        }
+                        newsList.value = tempNewsList
                     }
 
-                    newsList.value = tempNewsList
+                } else {
+
+                    val jsonObj: JSONObject?
+
+                    try {
+                        jsonObj = response.errorBody()?.string()?.let { JSONObject(it) }
+                        if (jsonObj != null) {
+                            MainActivity.APIRequestError = true
+                            MainActivity.errorMessage = jsonObj.getString("message")
+                            val tempNewsList = mutableListOf<NewsModel>()
+                            newsList.value = tempNewsList
+                        }
+                    } catch (e: JSONException) {
+                        Log.d("JSONException", "" + e.message)
+                    }
 
                 }
             }
+
             override fun onFailure(call: Call<NewsDataFromJson>, t: Throwable) {
+
+                MainActivity.APIRequestError = true
+                MainActivity.errorMessage = t.localizedMessage as String
+                Log.d("err_msg", "msg" + t.localizedMessage)
             }
         })
 
-    return newsList
+        return newsList
     }
-
 
 }
 

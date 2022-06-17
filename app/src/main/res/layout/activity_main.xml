@@ -1,190 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainAct"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainAct"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/tag1"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="10dp"
-        android:text="Categories"
-        android:forceHasOverlappingRendering="true"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:background="?attr/colorPrimary"
+        app:elevation="0dp">
 
-    <ImageButton
-        android:id="@+id/drop_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_margin="5dp"
-        android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/app_name"
+            app:titleCentered="true"
+            app:titleTextColor="?attr/colorOnPrimary" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cate_container"
-            android:layout_below="@+id/tag1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="5dp">
-
-                <Button
-                    android:id="@+id/general_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-
-                    android:padding="10dp"
-                    android:text="general"
-                    app:cornerRadius="30dp"
-                    android:onClick="buttonOnClick"/>
-
-                <Button
-                    android:id="@+id/business_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:padding="10dp"
-                    android:text="Business"
-                    app:cornerRadius="30dp"
-                    android:onClick="buttonOnClick"/>
-
-                <Button
-                    android:id="@+id/entertainment_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:onClick="buttonOnClick"
-                    android:padding="10dp"
-                    android:text="entertainment"
-                    app:cornerRadius="30dp"
-                    app:rippleColor="@null"
-                     />
+            android:background="?attr/colorPrimary"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/deep_sky_blue"
+            app:tabIndicatorFullWidth="false"
+            app:tabMaxWidth="0dp"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/deep_sky_blue" />
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/health_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="Health"
-                    app:cornerRadius="30dp"
-                    android:onClick="buttonOnClick"/>
-
-                <Button
-                    android:id="@+id/science_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="science"
-                    app:cornerRadius="30dp"
-                    android:onClick="buttonOnClick"/>
-
-                <Button
-                    android:id="@+id/sport_btn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="sports"
-                    app:cornerRadius="30dp"
-                    android:onClick="buttonOnClick"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/tag2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cate_container"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
-        android:text="News"
-        android:textSize="22sp" />
+        android:id="@+id/display_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="200dp"
+        android:textSize="20sp"
+        android:visibility="gone" />
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:alpha="0.4"
+        android:animateLayoutChanges="true"
+        android:animationCache="true"
+        android:clipChildren="true"
+        app:shimmer_dropoff="@integer/material_motion_duration_medium_1"
+        app:shimmer_repeat_mode="restart"
+        app:shimmer_shape="linear">
 
-    <FrameLayout
-        android:id="@+id/news_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/tag2"
-        >
+        <include layout="@layout/list_item_for_shimmer" />
 
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recyclerView"
-                />
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:shimmer_repeat_mode="restart"
-
-            app:shimmer_shape="linear"
-            android:animateLayoutChanges="true"
-            android:animationCache="true"
-            >
-
-            <!--For shimmer we are creating a same
-                layout but setting its background
-                as a gray colour and not providing
-                any view inside it-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
-
-                <!--below we are displaying multiple
-                    shimmer layouts using include
-                    to show them in list format-->
-                <include layout="@layout/shimmer_list_item" />
-                <include layout="@layout/shimmer_list_item" />
-                <include layout="@layout/shimmer_list_item" />
-
-
-            </LinearLayout>
-
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
-
-        </FrameLayout>
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/button_bg.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.338" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.2385" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.2365" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.3395" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_bookmarks_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_business_24.xml" value="0.24259259259259258" />
@@ -15,18 +19,43 @@
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_open_in_browser_24.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_open_in_new_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.2995" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.3395" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765625" />
-        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/overflow_menu.xml" value="0.312" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/tab_indicator.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_read_news.xml" value="0.25" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/activity_saved_news.xml" value="0.25" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/cardview_for_top_heads.xml" value="0.33" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_adapter.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_adapter2.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_business.xml" value="0.3625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_category.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_entertainment.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_first.xml" value="0.1" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_general.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_global.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_health.xml" value="0.3625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_saved_news.xml" value="0.1" />
-        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/list_item.xml" value="0.2" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_science.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_second.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_sports.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_tech.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_third.xml" value="0.3625" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/list_item.xml" value="0.33" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/list_item_for_shimmer.xml" value="0.22" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/list_item_for_top_headlines.xml" value="0.22894736842105262" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/main_page_new.xml" value="0.3625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/shimmer_list_item.xml" value="0.2" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/layout/splash_screen.xml" value="0.337037037037037" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/menu_item.xml" value="0.25" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/menu_item_mainactivity.xml" value="0.22894736842105262" />
+        <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/menu/menu_item_readnewsactivity.xml" value="0.22894736842105262" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26614583333333336" />
       </map>

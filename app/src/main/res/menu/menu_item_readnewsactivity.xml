@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_baseline_play_circle_24"
+        android:title="@string/listen"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/play_news"
+                android:title="Play" />
+
+            <item
+                android:id="@+id/stop_news"
+                android:title="Stop" />
+
+            <item
+                android:title="Speed">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/speed_075x"
+                        android:title="0.75x" />
+
+                    <item
+                        android:id="@+id/speed_1x"
+                        android:title="1x" />
+
+                    <item
+                        android:id="@+id/speed_2x"
+                        android:title="2x" />
+
+                </menu>
+
+            </item>
+
+            <item
+                android:title="Voice">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/voice1"
+                        android:title="voice1" />
+
+                    <item
+                        android:id="@+id/voice2"
+                        android:title="voice2" />
+
+                </menu>
+
+
+            </item>
+
+        </menu>
+
+    </item>
+
+    <item
+        android:title="More"
+        android:icon="@drawable/overflow_menu"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/browse_news"
+                android:icon="@drawable/ic_baseline_open_in_browser_24"
+                android:title="@string/browse"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/share_news"
+                android:icon="@drawable/ic_baseline_share_24"
+                android:title="@string/share"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/save_news"
+                android:icon="@drawable/ic_baseline_bookmark_24"
+                android:title="@string/save"
+                app:showAsAction="never" />
+
+        </menu>
+
+    </item>
+
+
+
+
+</menu>

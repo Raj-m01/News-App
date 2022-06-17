@@ -1,23 +1,24 @@
 package com.example.newsapp.architecture
 
 import android.content.Context
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.newsapp.NewsModel
 
 
-class NewsViewModel() : ViewModel() {
+class NewsViewModel : ViewModel() {
 
-     var NewsLiveData: MutableLiveData<List<NewsModel>>? = null
+    private var newsLiveData: MutableLiveData<List<NewsModel>>? = null
 
 
     //get news from API
-    fun getNews(category: String?) : MutableLiveData<List<NewsModel>>?{
+    fun getNews(category: String?): MutableLiveData<List<NewsModel>>? {
 
-        NewsLiveData = category?.let { NewsRepository().getNewsApiCall(it) }
+        newsLiveData = category.let { NewsRepository().getNewsApiCall(it) }
 
-        return NewsLiveData
+        return newsLiveData
     }
-
 
 
     var newsData: LiveData<List<NewsModel>>? = null
@@ -30,7 +31,7 @@ class NewsViewModel() : ViewModel() {
         NewsRepository.deleteNews(context, news)
     }
 
-    fun getNewsFromDB(context: Context) : LiveData<List<NewsModel>>? {
+    fun getNewsFromDB(context: Context): LiveData<List<NewsModel>>? {
         newsData = NewsRepository.getAllNews(context)
         return newsData
     }
