@@ -57,6 +57,7 @@ class SavedNewsActivity : AppCompatActivity() {
                 intent.putExtra(MainActivity.NEWS_DESCRIPTION, newsData[position].description)
                 intent.putExtra(MainActivity.NEWS_SOURCE, newsData[position].source)
                 intent.putExtra(MainActivity.NEWS_PUBLICATION_TIME, newsData[position].time)
+                intent.putExtra(MainActivity.NEWS_CONTENT, newsData[position].content)
                 startActivity(intent)
 
             }

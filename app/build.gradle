@@ -26,7 +26,6 @@ android {
 //        to use this app
 //        A valid key will need to be entered
         buildConfigField("String", 'API_KEY', API_KEY)
-//        buildConfigField('String' , 'myParameter', 'someValue')
 
     }
 
@@ -44,9 +43,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-//        buildTypes.each {
-//            it.buildConfigField 'String', 'API_KEY', API_KEY
-//        }
     }
 
 
