@@ -64,6 +64,14 @@ Note: To run the app you have to add NewsAPI.org key. This API has limited acces
 - **If a maintainer reports your pull request as spam, it will not be counted towards your participation in Hacktoberfest.**
 
 
+### Todos Features:
+
+* Add language support for various languages
+* Diversify news feed by adding different country/language options (through API endpoints)
+* Improve home page card-slider/Carousel
+* And many more.
+
+
 ### 📝 License 
 
 Copyright (c) 2022 Raj Manjrekar
