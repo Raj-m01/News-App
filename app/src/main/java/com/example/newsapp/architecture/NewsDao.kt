@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.newsapp.NewsModel
 
-
 @Dao
 interface NewsDao {
 
@@ -14,9 +13,6 @@ interface NewsDao {
     @Query("SELECT * FROM News_Table")
     fun getNewsFromDatabase(): LiveData<List<NewsModel>>
 
-
     @Delete
     fun deleteNews(news: NewsModel)
-
-
 }

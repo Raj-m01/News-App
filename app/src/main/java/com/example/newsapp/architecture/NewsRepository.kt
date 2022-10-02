@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.newsapp.BuildConfig
 import com.example.newsapp.MainActivity
 import com.example.newsapp.NewsModel
 import com.example.newsapp.retrofit.NewsApi
@@ -25,7 +26,7 @@ class NewsRepository {
         private var newsDatabase: NewsDatabase? = null
 
         private fun initializeDB(context: Context): NewsDatabase {
-            return NewsDatabase.getDataseClient(context)
+            return NewsDatabase.getDatabaseClient(context)
         }
 
         fun insertNews(context: Context, news: NewsModel) {
@@ -58,7 +59,7 @@ class NewsRepository {
         val newsList = MutableLiveData<List<NewsModel>>()
 
         val call = RetrofitHelper.getInstance().create(NewsApi::class.java)
-            .getNews("in", category, MainActivity.API_KEY) //put your api key here
+            .getNews("in", category, BuildConfig.API_KEY) //put your api key here
 
         call.enqueue(object : Callback<NewsDataFromJson> {
             override fun onResponse(
@@ -96,7 +97,7 @@ class NewsRepository {
                     try {
                         jsonObj = response.errorBody()?.string()?.let { JSONObject(it) }
                         if (jsonObj != null) {
-                            MainActivity.APIRequestError = true
+                            MainActivity.apiRequestError = true
                             MainActivity.errorMessage = jsonObj.getString("message")
                             val tempNewsList = mutableListOf<NewsModel>()
                             newsList.value = tempNewsList
@@ -110,7 +111,7 @@ class NewsRepository {
 
             override fun onFailure(call: Call<NewsDataFromJson>, t: Throwable) {
 
-                MainActivity.APIRequestError = true
+                MainActivity.apiRequestError = true
                 MainActivity.errorMessage = t.localizedMessage as String
                 Log.d("err_msg", "msg" + t.localizedMessage)
             }

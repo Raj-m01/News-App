@@ -13,9 +13,15 @@ import com.example.newsapp.NewsModel
 import com.example.newsapp.R
 import com.example.newsapp.ReadNewsActivity
 import com.example.newsapp.adapters.CustomAdapter
+import com.example.newsapp.utils.Constants.NEWS_CONTENT
+import com.example.newsapp.utils.Constants.NEWS_DESCRIPTION
+import com.example.newsapp.utils.Constants.NEWS_IMAGE_URL
+import com.example.newsapp.utils.Constants.NEWS_PUBLICATION_TIME
+import com.example.newsapp.utils.Constants.NEWS_SOURCE
+import com.example.newsapp.utils.Constants.NEWS_TITLE
+import com.example.newsapp.utils.Constants.NEWS_URL
 
 class HealthFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,22 +39,23 @@ class HealthFragment : Fragment() {
         adapter.setOnItemClickListener(object : CustomAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
 
-                val intent = Intent(context, ReadNewsActivity::class.java)
-                intent.putExtra(MainActivity.NEWS_URL, newsData[position].url)
-                intent.putExtra(MainActivity.NEWS_TITLE, newsData[position].headLine)
-                intent.putExtra(MainActivity.NEWS_IMAGE_URL, newsData[position].image)
-                intent.putExtra(MainActivity.NEWS_DESCRIPTION, newsData[position].description)
-                intent.putExtra(MainActivity.NEWS_SOURCE, newsData[position].source)
-                intent.putExtra(MainActivity.NEWS_PUBLICATION_TIME, newsData[position].time)
-                intent.putExtra(MainActivity.NEWS_CONTENT, newsData[position].content)
+                val intent = Intent(context, ReadNewsActivity::class.java).apply {
+                    putExtra(NEWS_URL, newsData[position].url)
+                    putExtra(NEWS_TITLE, newsData[position].headLine)
+                    putExtra(NEWS_IMAGE_URL, newsData[position].image)
+                    putExtra(NEWS_DESCRIPTION, newsData[position].description)
+                    putExtra(NEWS_SOURCE, newsData[position].source)
+                    putExtra(NEWS_PUBLICATION_TIME, newsData[position].time)
+                    putExtra(NEWS_CONTENT, newsData[position].content)
+                }
+
                 startActivity(intent)
             }
         })
 
-        //ignore
+        // Ignore
         adapter.setOnItemLongClickListener(object : CustomAdapter.OnItemLongClickListener {
-            override fun onItemLongClick(position: Int) {
-            }
+            override fun onItemLongClick(position: Int) = Unit
         })
 
         return view

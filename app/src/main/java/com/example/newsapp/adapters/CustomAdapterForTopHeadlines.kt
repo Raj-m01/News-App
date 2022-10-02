@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.MainActivity
 import com.example.newsapp.NewsModel
 import com.example.newsapp.R
+import com.example.newsapp.utils.Constants.TOP_HEADLINES_COUNT
 import com.squareup.picasso.Picasso
 
 
@@ -51,7 +52,7 @@ class CustomAdapterForTopHeadlines(private var newsList: List<NewsModel>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val pos = position % MainActivity.TOP_HEADLINES_COUNT
+        val pos = position % TOP_HEADLINES_COUNT
         val newsData: NewsModel = newsList[pos]
 
         holder.headLine.text = newsData.headLine
