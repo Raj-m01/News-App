@@ -6,11 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.newsapp.NewsModel
 
-
 class NewsViewModel : ViewModel() {
 
     private var newsLiveData: MutableLiveData<List<NewsModel>>? = null
-
 
     //get news from API
     fun getNews(category: String?): MutableLiveData<List<NewsModel>>? {
@@ -19,7 +17,6 @@ class NewsViewModel : ViewModel() {
 
         return newsLiveData
     }
-
 
     var newsData: LiveData<List<NewsModel>>? = null
 
@@ -35,6 +32,4 @@ class NewsViewModel : ViewModel() {
         newsData = NewsRepository.getAllNews(context)
         return newsData
     }
-
-
 }

@@ -28,7 +28,6 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
     }
 
     interface OnItemClickListener {
-
         fun onItemClick(position: Int)
     }
 
@@ -44,16 +43,13 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
         mClickListener = listener
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         context = parent.context
         return ViewHolder(view, mClickListener, mLongClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val newsData = newsList[holder.adapterPosition]
 
         holder.headLine.text = newsData.headLine
@@ -62,7 +58,7 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
 
         if (imgUrl.isNullOrEmpty()) {
             Picasso.get()
-                .load(R.drawable.samplenews)
+                .load( R.drawable.samplenews)
                 .fit()
                 .centerCrop()
                 .into(holder.image)
@@ -75,10 +71,10 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
                 .into(holder.image)
         }
 
-        if(context.toString().contains("SavedNews")){
-            val date = " "+time?.substring(0,time.indexOf('T',0))
+        if (context.toString().contains("SavedNews")) {
+            val date = " " + time?.substring(0, time.indexOf('T', 0))
             holder.newsPublicationTime.text = date
-        }else {
+        } else {
             val currentTimeInHours = Instant.now().atZone(ZoneId.of("Asia/Kolkata"))
             val newsTimeInHours = Instant.parse(time).atZone(ZoneId.of("Asia/Kolkata"))
             val hoursDifference = Duration.between(currentTimeInHours, newsTimeInHours)
@@ -96,11 +92,7 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
         ItemView: View,
         listener: OnItemClickListener,
         listener2: OnItemLongClickListener
-    ) : RecyclerView.ViewHolder(
-        ItemView
-    ) {
-
-
+    ) : RecyclerView.ViewHolder(ItemView) {
         val image: ImageView = itemView.findViewById(R.id.img)
         val headLine: TextView = itemView.findViewById(R.id.news_title)
         val newsPublicationTime: TextView = itemView.findViewById(R.id.news_publication_time)
@@ -114,8 +106,6 @@ class CustomAdapter(private var newsList: List<NewsModel>) :
                 listener2.onItemLongClick(adapterPosition)
                 return@setOnLongClickListener true
             }
-
-
         }
 
     }

@@ -17,6 +17,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp.architecture.NewsViewModel
+import com.example.newsapp.utils.Constants.NEWS_CONTENT
+import com.example.newsapp.utils.Constants.NEWS_DESCRIPTION
+import com.example.newsapp.utils.Constants.NEWS_IMAGE_URL
+import com.example.newsapp.utils.Constants.NEWS_PUBLICATION_TIME
+import com.example.newsapp.utils.Constants.NEWS_SOURCE
+import com.example.newsapp.utils.Constants.NEWS_TITLE
+import com.example.newsapp.utils.Constants.NEWS_URL
 import java.util.*
 
 
@@ -40,30 +47,33 @@ class ReadNewsActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //loading data into list
         newsData = ArrayList(1)
-        val newsUrl = intent.getStringExtra(MainActivity.NEWS_URL)
+        val newsUrl = intent.getStringExtra(NEWS_URL)
         val newsContent =
-            intent.getStringExtra(MainActivity.NEWS_CONTENT) + ". get paid version to hear full news. "
+            intent.getStringExtra(NEWS_CONTENT) + ". get paid version to hear full news. "
         newsData.add(
             NewsModel(
-                intent.getStringExtra(MainActivity.NEWS_TITLE)!!,
-                intent.getStringExtra(MainActivity.NEWS_IMAGE_URL),
-                intent.getStringExtra(MainActivity.NEWS_DESCRIPTION),
+                intent.getStringExtra(NEWS_TITLE)!!,
+                intent.getStringExtra(NEWS_IMAGE_URL),
+                intent.getStringExtra(NEWS_DESCRIPTION),
                 newsUrl,
-                intent.getStringExtra(MainActivity.NEWS_SOURCE),
-                intent.getStringExtra(MainActivity.NEWS_PUBLICATION_TIME),
+                intent.getStringExtra(NEWS_SOURCE),
+                intent.getStringExtra(NEWS_PUBLICATION_TIME),
                 newsContent
             )
         )
 
         // Webview
-        newsWebView.settings.domStorageEnabled = true
-        newsWebView.settings.loadsImagesAutomatically = true
-        newsWebView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-        newsWebView.settings.javaScriptEnabled = true
-        newsWebView.webViewClient = WebViewClient()
+        newsWebView.apply {
+            settings.apply {
+                domStorageEnabled = true
+                loadsImagesAutomatically = true
+                mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+                javaScriptEnabled = true
+            }
+            webViewClient = WebViewClient()
+            webChromeClient = WebChromeClient()
+        }
 
-
-        newsWebView.webChromeClient = WebChromeClient()
 
         if (newsUrl != null) {
             newsWebView.loadUrl(newsUrl)

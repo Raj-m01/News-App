@@ -6,10 +6,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.newsapp.MainActivity
 import com.example.newsapp.fragmentClasses.*
+import com.example.newsapp.utils.Constants.TOTAL_NEWS_TAB
 
 class FragmentAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle){
 
-    override fun getItemCount(): Int = MainActivity.TOTAL_NEWS_TAB
+    override fun getItemCount(): Int = TOTAL_NEWS_TAB
 
     override fun createFragment(position: Int): Fragment {
 
