@@ -75,7 +75,7 @@ class SavedNewsActivity : AppCompatActivity() {
             override fun onItemLongClick(position: Int) {
                 // Delete saved news dialog
                 recyclerView.findViewHolderForAdapterPosition(position)?.itemView?.setBackgroundColor(
-                    getThemeColor(R.attr.colorPrimaryVariant)
+                    getThemeColor(com.google.android.material.R.attr.colorPrimaryVariant)
                 )
 
                 val alertDialog = AlertDialog.Builder(this@SavedNewsActivity).apply {
@@ -98,7 +98,7 @@ class SavedNewsActivity : AppCompatActivity() {
 
                     setNegativeButton("No") { _, _ ->
                         recyclerView.findViewHolderForAdapterPosition(position)?.itemView?.setBackgroundColor(
-                            getThemeColor(R.attr.colorPrimary)
+                            getThemeColor(com.google.android.material.R.attr.colorPrimary)
                         )
                     }
                 }.create()

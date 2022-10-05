@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragmentClasses.GeneralFragment">
 
     <LinearLayout
@@ -20,11 +21,21 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_top"
+        <com.jama.carouselview.CarouselView
+            android:id="@+id/home_carousel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="280dp" />
+            app:enableSnapping="true"
+            app:scaleOnScroll="false"
+            app:setAutoPlay="true"
+            app:setAutoPlayDelay="3000"
+            app:carouselOffset="center"
+            app:indicatorAnimationType="drop"
+            app:indicatorRadius="5"
+            app:indicatorPadding="5"
+            app:size="10"
+            app:spacing="10"
+            app:resource="@layout/list_item_for_top_headlines"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
