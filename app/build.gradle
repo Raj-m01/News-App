@@ -21,7 +21,7 @@ android {
 //        Please ensure you have a valid API KEY for https://newsapi.org/
 //        to use this app
 //        A valid key will need to be entered
-        buildConfigField("String", 'API_KEY', API_KEY)
+        buildConfigField("String", "API_KEY", "\"5a3e054de1834138a2fbc4a75ee69053\"")
 
     }
 
@@ -80,4 +80,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation 'com.github.jama5262:CarouselView:1.2.2'
+
 }

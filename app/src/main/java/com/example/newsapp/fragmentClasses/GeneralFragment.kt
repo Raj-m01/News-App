@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,14 +27,20 @@ import com.example.newsapp.utils.Constants.NEWS_TITLE
 import com.example.newsapp.utils.Constants.NEWS_URL
 import com.example.newsapp.utils.Constants.TOP_HEADLINES_COUNT
 import com.example.newsapp.utils.Constants.INITIAL_POSITION
+import com.jama.carouselview.CarouselScrollListener
+import com.jama.carouselview.CarouselView
+import com.jama.carouselview.enums.IndicatorAnimationType
+import com.jama.carouselview.enums.OffsetType
+import com.squareup.picasso.Picasso
 
 class GeneralFragment : Fragment() {
 
     private lateinit var mainHandler: Handler
     private lateinit var swiper: Runnable
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewTop: RecyclerView
-    private lateinit var topAdapter: CustomAdapterForTopHeadlines
+//    private lateinit var recyclerViewTop: RecyclerView
+    private lateinit var carouselView: CarouselView
+//    private lateinit var topAdapter: CustomAdapterForTopHeadlines
     private lateinit var adapter: CustomAdapter
     private lateinit var newsDataForTopHeadlines: List<NewsModel>
     private lateinit var newsDataForDown: List<NewsModel>
@@ -45,49 +52,68 @@ class GeneralFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_general, container, false)
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val layoutManagerTop = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerViewTop = view.findViewById(R.id.recyclerView_top)
         recyclerView.layoutManager = layoutManager
-        recyclerViewTop.layoutManager = layoutManagerTop
 
         // Setting recyclerViews adapter
         newsDataForTopHeadlines = MainActivity.generalNews.slice(0 until TOP_HEADLINES_COUNT)
         newsDataForDown = MainActivity.generalNews.slice(TOP_HEADLINES_COUNT until MainActivity.generalNews.size - TOP_HEADLINES_COUNT)
-        topAdapter = CustomAdapterForTopHeadlines(newsDataForTopHeadlines)
         adapter = CustomAdapter(newsDataForDown)
-        recyclerViewTop.adapter = topAdapter
         recyclerView.adapter = adapter
+
+
+        carouselView = view.findViewById<CarouselView>(R.id.home_carousel)
+
+        carouselView.apply {
+            size = newsDataForTopHeadlines.size
+//            resource = R.layout.carousel_item
+            autoPlay = true
+            indicatorAnimationType = IndicatorAnimationType.THIN_WORM
+            carouselOffset = OffsetType.CENTER
+            setCarouselViewListener { view, position ->
+                // Example here is setting up a full image carousel
+                val imageView = view.findViewById<ImageView>(R.id.img)
+//                imageView.setImageDrawable()
+                Picasso.get()
+                    .load(newsDataForTopHeadlines[position].image)
+                    .fit()
+                    .centerCrop()
+                    .error(R.drawable.samplenews)
+                    .into(imageView)
+            }
+            // After you finish setting up, show the CarouselView
+            show()
+        }
 
         // Top headlines items Slider
         mainHandler = Handler(Looper.getMainLooper())
         swiper = object : Runnable {
             override fun run() {
-                recyclerViewTop.smoothScrollToPosition(position)
+//                recyclerViewTop.smoothScrollToPosition(position)
                 position++
                 mainHandler.postDelayed(this, DEFAULT_SWIPER_DELAY)
             }
         }
 
-        var stateChanged = false
 
-        recyclerViewTop.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
+        carouselView.carouselScrollListener = object : CarouselScrollListener {
+            override fun onScrollStateChanged(
+                recyclerView: RecyclerView,
+                newState: Int,
+                position: Int
+            ) {
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
                     mainHandler.removeCallbacks(swiper)
-                    stateChanged = true
-                }
-
-                if (stateChanged && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    position = layoutManagerTop.findFirstVisibleItemPosition() + 1
-                    mainHandler.post(swiper)
-                    stateChanged = false
                 }
             }
-        })
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+            }
+        }
+
+
 
         // listitem onClick
         adapter.setOnItemClickListener(object : CustomAdapter.OnItemClickListener {
@@ -107,24 +133,24 @@ class GeneralFragment : Fragment() {
         })
 
         //TOPHEADLINES LIST ITEM ONCLICK
-        topAdapter.setOnItemClickListener(object :
-            CustomAdapterForTopHeadlines.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val pos = position % TOP_HEADLINES_COUNT
-
-                val intent = Intent(context, ReadNewsActivity::class.java).apply {
-                    putExtra(NEWS_URL, newsDataForTopHeadlines[pos].url)
-                    putExtra(NEWS_TITLE, newsDataForTopHeadlines[pos].headLine)
-                    putExtra(NEWS_IMAGE_URL, newsDataForTopHeadlines[pos].image)
-                    putExtra(NEWS_DESCRIPTION, newsDataForTopHeadlines[pos].description)
-                    putExtra(NEWS_SOURCE, newsDataForTopHeadlines[pos].source)
-                    putExtra(NEWS_PUBLICATION_TIME, newsDataForTopHeadlines[pos].time)
-                    putExtra(NEWS_CONTENT, newsDataForTopHeadlines[pos].content)
-                }
-
-                startActivity(intent)
-            }
-        })
+//        topAdapter.setOnItemClickListener(object :
+//            CustomAdapterForTopHeadlines.OnItemClickListener {
+//            override fun onItemClick(position: Int) {
+//                val pos = position % TOP_HEADLINES_COUNT
+//
+//                val intent = Intent(context, ReadNewsActivity::class.java).apply {
+//                    putExtra(NEWS_URL, newsDataForTopHeadlines[pos].url)
+//                    putExtra(NEWS_TITLE, newsDataForTopHeadlines[pos].headLine)
+//                    putExtra(NEWS_IMAGE_URL, newsDataForTopHeadlines[pos].image)
+//                    putExtra(NEWS_DESCRIPTION, newsDataForTopHeadlines[pos].description)
+//                    putExtra(NEWS_SOURCE, newsDataForTopHeadlines[pos].source)
+//                    putExtra(NEWS_PUBLICATION_TIME, newsDataForTopHeadlines[pos].time)
+//                    putExtra(NEWS_CONTENT, newsDataForTopHeadlines[pos].content)
+//                }
+//
+//                startActivity(intent)
+//            }
+//        })
 
         // Ignore
         adapter.setOnItemLongClickListener(object : CustomAdapter.OnItemLongClickListener {

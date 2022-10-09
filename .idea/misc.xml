@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/News-App/app/src/main/res/layout/fragment_general.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android Projects/News-App/app/src/main/res/layout/list_item_for_top_headlines.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1765625" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/button_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/RAJ MANJREKAR/AndroidStudioProjects/NewsApp/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.338" />
