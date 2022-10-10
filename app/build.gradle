@@ -20,7 +20,7 @@ android {
 
 //        Please ensure you have a valid API KEY for https://newsapi.org/
 //        to use this app
-//        A valid key will need to be entered
+//        A valid key will need to be entered in gradle.properties file
         buildConfigField("String", "API_KEY", "\"5a3e054de1834138a2fbc4a75ee69053\"")
 
     }

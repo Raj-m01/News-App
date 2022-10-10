@@ -41,8 +41,6 @@ Kotlin-based Android news app helps users stay up-to-date on the latest headline
 Note: To run the app you have to add NewsAPI.org key. This API has limited access to daily request for News. 
  * Generate API key from <a href="https://newsapi.org/">News api</a>
  *  Paste the key in 'gradle.properties' *(Create the file if not exists)*
-    - For Linux/Mac: `/home/.gradle/gradle.properties`
-    - For Windows: `C:\Users\<UserName>\.gradle\gradle.properties`
  
     API_KEY="<YOUR_API_KEY>"
  * Rebuild app
@@ -62,14 +60,6 @@ Note: To run the app you have to add NewsAPI.org key. This API has limited acces
 - **Before creating any Pull Request, please register yourself at [Hacktoberfest's Official Website](https://hacktoberfest.digitalocean.com/)**
 - **If a maintainer reports behavior that’s not in line with the project’s code of conduct, then you will be ineligible to participate.**
 - **If a maintainer reports your pull request as spam, it will not be counted towards your participation in Hacktoberfest.**
-
-
-### Todos Features:
-
-* Add language support for various languages
-* Diversify news feed by adding different country/language options (through API endpoints)
-* Improve home page card-slider/Carousel
-* And many more.
 
 
 ### 📝 License 

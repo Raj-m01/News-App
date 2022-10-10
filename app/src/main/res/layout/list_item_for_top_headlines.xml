@@ -30,21 +30,6 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/samplenews" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|start"
-                android:layout_margin="10dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:layout_margin="10dp"
-                android:visibility="gone"
-                android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -52,9 +37,10 @@
             android:id="@+id/headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="4"
+            android:minHeight="70dp"
+            android:maxLines="3"
             android:padding="5dp"
-            android:text="Hello , this is sample news....."
+            android:text="Hello , ypesetter in the book. It usually begins with"
             android:textStyle="bold" />
 
     </LinearLayout>
