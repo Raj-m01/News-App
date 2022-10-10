@@ -46,7 +46,7 @@ Note: To run the app you have to add NewsAPI.org key. This API has limited acces
  * Rebuild app
  
 
-### Application link : <a href="https://github.com/Raj-m01/News-App/blob/master/apk/News.apk">**Click here to download apk**</a>
+### Application link : <a href="https://drive.google.com/file/d/1u0A4mCkY98cfavE32c6GH_bVp0v9wujr/view?usp=sharing">**Click here to download apk**</a>
 
 ### Contributing
 
