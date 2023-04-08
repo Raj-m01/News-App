@@ -50,7 +50,7 @@ class GeneralFragment : Fragment() {
 
         // Setting recyclerViews adapter
         newsDataForTopHeadlines = MainActivity.generalNews.slice(0 until TOP_HEADLINES_COUNT)
-        newsDataForDown = MainActivity.generalNews.slice(TOP_HEADLINES_COUNT until MainActivity.generalNews.size - TOP_HEADLINES_COUNT)
+        newsDataForDown = MainActivity.generalNews.slice(TOP_HEADLINES_COUNT until MainActivity.generalNews.size - 1)
         adapter = CustomAdapter(newsDataForDown)
         recyclerView.adapter = adapter
 
