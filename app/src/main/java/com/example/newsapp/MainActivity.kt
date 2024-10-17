@@ -2,6 +2,7 @@ package com.example.newsapp
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -10,8 +11,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.newsapp.adapters.FragmentAdapter
@@ -45,9 +50,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var shimmerLayout: ShimmerFrameLayout
     private var totalRequestCount = 0
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        checkNotificationPermission()
 
         // Set Action Bar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -81,6 +88,29 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun checkNotificationPermission() {
+        val permission = android.Manifest.permission.POST_NOTIFICATIONS
+        when {
+            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
+                // make your action here
+            }
+            shouldShowRequestPermissionRationale(permission) -> {
+                //showPermissionRationaleDialog() // permission denied permanently
+                Toast.makeText(this, "Noooooooooooooooo", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                requestNotificationPermission.launch(permission)
+            }
+        }
+    }
+
+    private val requestNotificationPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted->
+            if (isGranted) // make your action here
+                else Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+        }
 
     private fun requestNews(newsCategory: String, newsData: MutableList<NewsModel>) {
         viewModel.getNews(category = newsCategory)?.observe(this) {
